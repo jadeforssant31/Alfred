@@ -1,0 +1,7 @@
+cyrilnjitari@gmail.com;voila123;NJITARI;2022-06-05
+njitaridilane@gmail.com;1234;Maxo;2022-06-07
+maxo@gmail.com;1234;Maxo;2022-06-08
+moi@gmail.com;1234;MOI;2022-06-08
+clara.theodoly@gmail.com;1234;CLARA_THEODOLY;2022-06-10
+elea.2001@hotmail.fr;ROMANE123;Eléa;2022-06-10
+alfred@gmail.com;1234;Cyril;2022-06-10

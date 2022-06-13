@@ -1,0 +1,301 @@
+
+#fenêtre de login
+<LoginWindow>:
+    name: "login" # le name est comme une clé qui permet de faire reférence à la fenetre login
+
+    intermediaire : itmd
+    email: email
+    password: password
+
+    FloatLayout:
+        Image:
+            source:'images/epf.jpg'
+            size_hint: 0.8, 0.2
+            pos_hint: {'center_x': 0.5, 'center_y': 0.8}
+            allow_stretch: True
+            keep_ratio: True
+        Label:
+            color: 1,0,0,1
+            text: "ALFRED"
+            size_hint: 1, 0.9
+            pos_hint: {'center_x': 0.5, 'center_y': 0.65}
+            font_size: '1.05833cm'
+            #font_size: (root.width**2 + root.height**2) / 14**4
+        Label:
+            id : itmd
+            pos_hint: {'center_x': 0.2, 'center_y': 0.5}
+        TextInput:
+            id: email
+            font_size: (root.width**2 + root.height**2) / 13**4
+            multiline: False
+            hint_text:"E-mail"
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            size_hint: 0.6, 0.09
+
+        TextInput:
+            id: password
+            font_size: (root.width**2 + root.height**2) / 13**4
+            multiline: False
+            hint_text:"Password"
+            password: True
+            #pos_hint: {"x": 0.35, "top":0.7}
+            pos_hint: {'center_x': 0.5, 'center_y': 0.3}
+            size_hint: 0.6, 0.09
+
+        Button:
+            pos_hint:{"x":0.55,"y":0.05}
+            size_hint: 0.35, 0.1
+            font_size: (root.width**2 + root.height**2) / 13**4
+            text: "Se connecter"
+            on_release:
+                root.manager.transition.direction = "up"
+                root.loginBtn(); root.manager.get_screen('Majeure').update_text(root.intermediaire.text)
+
+        Button:
+            pos_hint:{"x":0.15,"y":0.05}
+            size_hint: 0.35, 0.1
+            font_size: (root.width**2 + root.height**2) / 13**4
+            text: "Créer un compte"
+            on_release:
+                root.manager.transition.direction = "right"
+                root.createBtn()
+
+#fenêtre de création de compte
+
+<CreateAccountWindow>:
+    name: "create" # identifiant de la fenetre
+
+    namee: namee
+    email: email
+    password: passw
+
+    FloatLayout:
+        size: root.width, root.height/2
+        Image:
+            source:'images/epf.jpg'
+            size_hint: 0.8, 0.2
+            pos_hint: {'center_x': 0.5, 'center_y': 0.8}
+            allow_stretch: True
+            keep_ratio: True
+        Label:
+            color: 1,0,0,1
+            text: "ALFRED"
+            size_hint: 1, 0.9
+            pos_hint: {'center_x': 0.5, 'center_y': 0.65}
+            font_size: '1.05833cm'
+            #font_size: (root.width**2 + root.height**2) / 14**4
+        Label:
+            text: "Créer un compte"
+            size_hint: 0.8, 0.2
+            pos_hint: {'center_x': 0.15, 'center_y': 0.58}
+            font_size: (root.width**2 + root.height**2) / 14**4
+
+
+        TextInput:
+            pos_hint: {"x":0.5, "top":0.8}
+            size_hint: 0.6, 0.09
+            id: namee
+            hint_text:"User name"
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            multiline: False
+            font_size: (root.width**2 + root.height**2) / 14**4
+
+        TextInput:
+            id: email
+            size_hint: 0.6, 0.09
+            hint_text:"E-mail"
+            pos_hint: {'center_x': 0.5, 'center_y': 0.4}
+            multiline: False
+            font_size: (root.width**2 + root.height**2) / 14**4
+
+
+        TextInput:
+            id: passw
+            pos_hint: {'center_x': 0.5, 'center_y': 0.3}
+            size_hint: 0.6, 0.09
+            hint_text:"password"
+            multiline: False
+            password: True
+            font_size: (root.width**2 + root.height**2) / 14**4
+
+        Button:
+            pos_hint:{"x":0.15,"y":0.05}
+            size_hint: 0.35, 0.1
+            font_size: (root.width**2 + root.height**2) / 13**4
+            text: "Se connecter"
+            on_release:
+                app.root.current = "login"
+                root.manager.transition.direction = "left"
+
+        Button:
+            pos_hint:{"x":0.55,"y":0.05}
+            size_hint: 0.35, 0.1
+            text: "S'inscrire"
+            font_size: (root.width**2 + root.height**2) / 13**4
+            on_release:
+                root.manager.transition.direction = "left"
+                root.submit()
+
+<MainWindow>:
+    name: "Accueil"
+
+    FloatLayout:
+        orientation:"vertical"
+        Image:
+            source:'images/epf.jpg'
+            size_hint: 0.8, 0.2
+            pos_hint: {'center_x': 0.5, 'center_y': 0.8}
+            allow_stretch: True
+            keep_ratio: True
+        Label:
+            color: 1,0,0,1
+            text: "ALFRED"
+            size_hint: 1, 0.9
+            pos_hint: {'center_x': 0.5, 'center_y': 0.65}
+            font_size: '1.05833cm'
+            #font_size: (root.width**2 + root.height**2) / 14**4
+        FloatLayout:
+            orientation:"horizontal"
+            Button:
+                pos_hint:{"x": 0.2, "y":0.4}
+                size_hint:0.6, 0.1
+                text: "Ma majeure"
+                #background_color: 1, 0, 0, 1
+                on_release:
+                    app.root.current = "Majeure"
+                    root.manager.transition.direction = "left"
+            Button:
+                pos_hint:{"x": 0.2, "y":0.4}
+                size_hint:0.6, 0.1
+                text: "Ma Majeure"
+                on_release:
+                    app.root.current = "Majeure"
+                    root.manager.transition.direction = "left"
+            Button:
+                pos_hint:{"x": 0.2, "y":0.3}
+                size_hint:0.6, 0.1
+                text: "Resultat"
+                on_release:
+                    app.root.current = "result"
+                    root.manager.transition.direction = "left"
+
+            Button:
+                pos_hint:{"x": 0.2, "y":0.2}
+                size_hint:0.6, 0.1
+                text: "Info Majeure"
+                on_release:
+                    app.root.current = "Info"
+                    root.manager.transition.direction = "left"
+
+            Button:
+                pos_hint:{"x":0.2, "y": 0.1}
+                size_hint:0.6,0.1
+                text: "Paramètres"
+                on_release:
+                    app.root.current = "param"
+                    root.manager.transition.direction = "left"
+
+<MajeureWindow>:
+    name: "Majeure"
+    
+    box:box
+    FloatLayout:
+        orientation:"vertical"
+        Image:
+            source:'images/epf.jpg'
+            size_hint: 0.8, 0.2
+            pos_hint: {'center_x': 0.5, 'center_y': 0.8}
+            allow_stretch: True
+            keep_ratio: True
+        Label:
+            color: 1,0,0,1
+            text: "ALFRED"
+            size_hint: 1, 0.9
+            pos_hint: {'center_x': 0.5, 'center_y': 0.65}
+            font_size: '1.05833cm'
+            #font_size: (root.width**2 + root.height**2) / 14**4
+        Label:
+            id: box
+            text: ""
+            size_hint: 0.8, 0.2
+            pos_hint: {'center_x': 0.5, 'center_y': 0.55}
+            font_size: (root.width**2 + root.height**2) / 14**4
+        Label:
+            text: root.proposition
+            size_hint: 0.8, 0.2
+            pos_hint: {'center_x': 0.5, 'center_y': 0.4}
+            font_size: (root.width**2 + root.height**2) / 14**4
+
+        Button:
+            pos_hint: {'center_x': 0.2, 'center_y': 0.2}
+            size_hint:0.2, 0.1
+            text: "Non"
+
+        Button:
+            pos_hint: {'center_x': 0.5, 'center_y': 0.2}
+            size_hint:0.2, 0.1
+            text: "Neutre"
+
+        Button:
+            pos_hint: {'center_x': 0.8, 'center_y': 0.2}
+            size_hint:0.2,0.1
+            text: "Oui"
+            on_press:root.new_proposition()
+        Button:
+            pos_hint: {'center_x': 0.5, 'center_y': 0.05}
+            size_hint:0.2,0.1
+            text: "Retour"
+            on_release:
+                app.root.current = "Accueil"
+                root.manager.transition.direction = "right"
+
+
+<InfoWindow>:
+    name: "Info"
+    FloatLayout:
+        Label:
+            text: "Information sur les Majeures"
+            size_hint: 0.8, 0.2
+            pos_hint: {"x":0.1, "top":1}
+            font_size: (root.width**2 + root.height**2) / 14**4
+        Button:
+            pos_hint:{"x":0.01, "y": 0.85}
+            size_hint:0.2,0.1
+            text: "Retour"
+            on_release:
+                app.root.current = "Accueil"
+                root.manager.transition.direction = "right"
+
+<ParametresWindow>:
+    name: "param"
+    FloatLayout:
+        Label:
+            text: "Paramètres"
+            size_hint: 0.8, 0.2
+            pos_hint: {"x":0.1, "top":1}
+            font_size: (root.width**2 + root.height**2) / 14**4
+
+        Button:
+            pos_hint:{"x":0.01, "y": 0.85}
+            size_hint:0.2,0.1
+            text: "Retour"
+            on_release:
+                app.root.current = "Accueil"
+                root.manager.transition.direction = "right"
+
+<ResultWindow>:
+    name: "result"
+    FloatLayout:
+        Label:
+            text: "Resultat"
+            size_hint: 0.8, 0.2
+            pos_hint: {"x":0.1, "top":1}
+            font_size: (root.width**2 + root.height**2) / 14**4
+
+        Button:
+            pos_hint:{"x":0.01, "y": 0.85}
+            size_hint:0.2,0.1
+            text: "Retour"
+            on_release:
+                app.root.current = "Accueil"
+                root.manager.transition.direction = "right"
